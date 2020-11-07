@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 class Register extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class Register extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
   
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
 
     const newUser = {
@@ -26,7 +27,13 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    console.log(newUser);
+    try {
+      const response = await axios.post('http://localhost:5000/api/users/register', newUser);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+
   };
 
   render() {
