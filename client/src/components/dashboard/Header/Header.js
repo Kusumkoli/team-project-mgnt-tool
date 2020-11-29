@@ -7,7 +7,7 @@ import {
   Menu,
   MenuItem,
   Fab,
-  //Link
+  Button
 } from "@material-ui/core";
 
 import {
@@ -19,8 +19,12 @@ import {
 } from "@material-ui/icons";
 
 import classNames from "classnames";
+import { connect } from "react-redux";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
+import PropTypes from "prop-types";
+import { logoutUser } from "../../../actions/authActions";
+
 
 // styles
 import useStyles from "./styles";
@@ -96,8 +100,13 @@ const colortheme = createMuiTheme({
   },
 });
 
-export default function Header(props) {
+function Header(props) {
   var classes = useStyles();
+
+  const onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
 
   // local
   var [mailMenu, setMailMenu] = useState(null);
@@ -145,17 +154,9 @@ export default function Header(props) {
             />
           )}
         </IconButton>
-        {/*<DetailsIcon
-          style={{
-            fontSize: 30,
-            color: "#4e9ffa",
-            paddingBottom: 0,
-            paddingTop: 0,
-            marginBottom: 0,
-          }}
-        />*/}
+        
         <Typography variant="h6" weight="normal" className={classes.logotype}>
-          DELEGO
+          TEAMS
         </Typography>
 
         <div className={classes.grow} />
@@ -274,16 +275,9 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
+              Hi, John Smith
             </Typography>
-            <Typography
-              className={classes.profileMenuLink}
-              component="a"
-              color="primary"
-              href="https://flatlogic.com"
-            >
-              Flalogic.com
-            </Typography>
+            
           </div>
           <MenuItem
             className={classNames(
@@ -310,16 +304,34 @@ export default function Header(props) {
             <AccountIcon className={classes.profileMenuIcon} /> Messages
           </MenuItem>
           <div className={classes.profileMenuUser}>
-            <Typography
-              className={classes.profileMenuLink}
-              color="primary"
-              
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              onClick={onLogoutClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
-              Sign Out
-            </Typography>
+              Logout
+            </button>
           </div>
         </Menu>
       </Toolbar>
     </AppBar>
   );
 }
+
+Header.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+)(Header);

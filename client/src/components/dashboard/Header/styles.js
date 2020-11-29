@@ -8,8 +8,8 @@ export default makeStyles(theme => ({
     color: "grey",
     marginLeft: theme.spacing(2.5),
     marginRight: theme.spacing(2.5),
-    fontWeight: 400,  
-    fontSize: 16,
+    fontWeight: 800,  
+    fontSize: 18,
     whiteSpace: "nowrap",
     [theme.breakpoints.down("xs")]: {
       display: "none",
@@ -19,7 +19,7 @@ export default makeStyles(theme => ({
     width: "100%",
     zIndex: theme.zIndex.drawer + 1,
     background: "#fafbfc",
-    backgroundCOlor: '#fafbfc',
+    backgroundColor: '#39aoca',
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -34,7 +34,7 @@ export default makeStyles(theme => ({
     }),
   },
   toolbar: {
-    backgroundColor: "#fafbfc",
+    backgroundColor: "#39aoca",
     paddingLeft: theme.spacing(1),
     paddingRight: theme.spacing(1),
     justifyContent: 'space-between',
@@ -49,7 +49,7 @@ export default makeStyles(theme => ({
     position: "relative",
     borderRadius: 25,
     paddingLeft: theme.spacing(2.5),
-    width: 400,
+    width: 300,
     backgroundColor: "#4e9ffa29",
     transition: theme.transitions.create(["background-color", "width"]),
     "&:hover": {
@@ -65,7 +65,7 @@ export default makeStyles(theme => ({
     backgroundColor: fade(theme.palette.common.black, 0.08),
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: 400,
+      width: 300,
     },
   },
   searchIcon: {

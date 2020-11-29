@@ -28,9 +28,7 @@ import useStyles from "./styles";
 //import PageTitle from "../../components/PageTitle/PageTitle";
 import Notification from "../Notification/Notification";
 import { Typography, Button } from "../Typography";
-//import Calendar from "../../components/Calendar/Calendar";
-// import UpcomingDeadlines from '../../pages/companyinfo/innerTabs/UpcomingDeadlines';
-
+import TrelloList from "../TrelloList";
 
 
 export default function NotificationsPage(props) {
@@ -59,13 +57,13 @@ export default function NotificationsPage(props) {
         <div className={classes.mainContent}>
           <div className={classes.displayFlex}>
             <Typography variant="h4" component="span">
-              Dashboard
               <IconButton
                 component="span"
                 style={{ color: "#4e9ffa", fontSize: 10 }}
               >
                 <CreateIcon />
               </IconButton>
+              Dashboard
             </Typography>
             <div>
               <ButtonGroup
@@ -114,6 +112,7 @@ export default function NotificationsPage(props) {
           </Grid>
         </div>
       </div>
+      <TrelloList title="Wedding"/>
     </>
   );
 };
