@@ -96,8 +96,8 @@ const colortheme = createMuiTheme({
   palette: {
     primary: { main: "#00e5ff" },
     secondary: { main: "#2979ff" },
-    contrastText: "#fff",
-  },
+    contrastText: "#fff"
+  }
 });
 
 function Header(props) {
@@ -105,7 +105,7 @@ function Header(props) {
 
   const onLogoutClick = e => {
     e.preventDefault();
-    this.props.logoutUser();
+    props.logoutUser();
   };
 
   // local

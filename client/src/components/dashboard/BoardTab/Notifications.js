@@ -1,150 +1,124 @@
 import React, { useState } from "react";
-import { Grid } from "@material-ui/core";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+//import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Box from '@material-ui/core/Box';
-import PropTypes from 'prop-types';
-import Tab from '@material-ui/core/Tab';
-import CreateIcon from "@material-ui/icons/Create";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
+
+// import AppBar from '@material-ui/core/AppBar';
+// import Tabs from '@material-ui/core/Tabs';
+// import Box from '@material-ui/core/Box';
+// import PropTypes from 'prop-types';
+// import Tab from '@material-ui/core/Tab';
+// import CreateIcon from "@material-ui/icons/Create";
+// import ButtonGroup from "@material-ui/core/ButtonGroup";
+// import Avatar from "@material-ui/core/Avatar";
+// import IconButton from "@material-ui/core/IconButton";
+// import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
 
 // styles
 import useStyles from "./styles";
 
 // components
-import Notification from "../Notification/Notification";
-import { Typography, Button } from "../Typography";
-import TrelloList from "../TrelloList";
+// import Notification from "../Notification/Notification";
+// import { Typography, Button } from "../Typography";
+// import TrelloList from "../TrelloList";
+import { addBoard } from "../../../actions/boardActions";
+import BoardThumbnail from "../BoardThumbnail";
 
+const Thumbnails = styled.div`
+  flex: 1;
+  height: 50%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
+const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+`;
 
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`} aria-labelledby={`simple-tab-${index}`}
-      {...other} >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+const CreateTitle = styled.h3`
+  font-size: 48px;
+  color: white;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+`;
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
+const CreateInput = styled.input`
+  width: 400px;
+  height: 80px;
+  font-size: 22px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: none;
+  outline-color: blue;
+  box-shadow: 0 2px 4px grey;
+  align-self: center;
+`;
 
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
-  };
-}
-
-const NotificationsPage = (props) =>{
+const NotificationsPage = ({ boards, boardOrder, dispatch }) =>{
   var classes = useStyles();
 
-  //const { lists } = this.props;
-  console.log(props);
-  const [value, setValue] = React.useState(0);
+  const [newBoardTitle, setNewBoardTitle] = useState("");
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleChange = e => {
+    setNewBoardTitle(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(addBoard(newBoardTitle));
+  };
+
+  const renderBoards = () => {
+    return boardOrder.map(boardID => {
+      const board = boards[boardID];
+
+      return (
+        <Link
+          key={boardID}
+          to={`/${board.id}`}
+          style={{ textDecoration: "none" }}
+        >
+          <BoardThumbnail {...board} />
+        </Link>
+      );
+    });
+  };
+
+  const renderCreateBoard = () => {
+    return (
+      <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+        <CreateTitle>Create a new Board</CreateTitle>
+        <CreateInput
+          onChange={handleChange}
+          value={newBoardTitle}
+          placeholder="Your boards title..."
+          type="text"
+        />
+      </form>
+    );
   };
 
   return (
-    <>
-      <div className={classes.outerDiv}>
-        <div className={classes.mainContent}>
-          <div className={classes.displayFlex}>
-            <Typography variant="h4" component="span">
-              <IconButton
-                component="span"
-                style={{ color: "#4e9ffa", fontSize: 10 }}
-              >
-                <CreateIcon />
-              </IconButton>
-              Dashboard
-            </Typography>
-            <div>
-              <ButtonGroup
-                color="primary"
-                aria-label="outlined primary button group"
-              >
-                <Button>Prioritize</Button>
-                <Button>Check</Button>
-                <Button>Create</Button>
-              </ButtonGroup>
-            </div>
-          </div>
-          <Grid container spacing={4} direction="row" alignItems="center" style={{paddingTop: 10, paddingLeft: 15}}>
-            <Grid item className={classes.topGridItem} style={{margin: '16px 16px 16px 0px'}}>
-              <div style={{padding: '5px 10px'}}>
-                <Typography variant="h2">43</Typography>
-                <Typography variant="subtitle1">Tasks Completed</Typography>
-              </div>
-              <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', padding: 10}}>
-                < CreateIcon />
-              </div>
-            </Grid>
-            <Grid item className={classes.topGridItem} style={{margin: '16px 16px 16px 0px', color: 'grey', backgroundColor: 'white'}}>
-              <div style={{padding: '5px 10px'}}>
-                <Typography variant="h2">43</Typography>
-                <Typography variant="subtitle1">Tasks Completed</Typography>
-              </div>
-              <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', padding: 10}}>
-                < CreateIcon />
-              </div>
-            </Grid>
-            <Grid item className={classes.topGridItem} style={{margin: '16px 16px 16px 0px', color: 'grey', backgroundColor: 'white'}}>
-              <div style={{padding: '5px 10px'}}>
-                <Typography variant="h2">43</Typography>
-                <Typography variant="subtitle1">Tasks Completed</Typography>
-              </div>
-              <div style={{display:'flex', justifyContent: 'center', alignItems: 'center', padding: 10}}>
-                < CreateIcon />
-              </div>
-            </Grid>
-            <Grid item>
-              <Avatar style={{backgroundColor: 'white'}}>
-                <ArrowForwardOutlinedIcon style={{ color: '#4e9ffa', backgroundColor: 'white'}}/>
-              </Avatar>
-            </Grid>
-          </Grid>
-        </div>
-      </div>
-      <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-            <Tab label="Cards" {...a11yProps(0)} />
-            <Tab label="Chat" {...a11yProps(1)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          <div className={classes.oneBoard}>
-            {props.lists.map( list => {
-              return <TrelloList title={list.title} cards={list.cards} />  
-            })}
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-        </TabPanel>
-    </>
+    <div className={classes.outerDiv}>
+      <HomeContainer>
+        <Thumbnails>{renderBoards()}</Thumbnails>
+        {renderCreateBoard()}
+      </HomeContainer>
+    </div>
   );
 };
 
 const mapStateToProps = state => ({
-  lists: state.lists
+  boards: state.boards,
+  boardOrder: state.boardOrder
 });
 
 export default connect(mapStateToProps)(NotificationsPage);
