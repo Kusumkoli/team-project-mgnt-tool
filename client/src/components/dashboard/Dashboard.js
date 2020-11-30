@@ -57,12 +57,10 @@ function Dashboard(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  console.log("in layout  mapstatetoprops", state);
-  // return {
-  //   isSidebarOpened: state.LayoutReducer.isSidebarOpened,
-  // };
-};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  isSidebarOpened: state.layoutReducer.isSidebarOpened
+});
 
 export default withRouter(connect(mapStateToProps)(Dashboard));
 

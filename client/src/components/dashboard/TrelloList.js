@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import TrelloCard from "./TrelloCard";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const TrelloList = ({title}) => {
+const TrelloList = ({ title, cards }) => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState(0);
 
@@ -73,7 +74,6 @@ const TrelloList = ({title}) => {
 					
 				</TabPanel>
 			</div>
-			
 	    </>
 	)
 }
