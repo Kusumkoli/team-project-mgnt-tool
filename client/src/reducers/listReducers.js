@@ -12,7 +12,21 @@ const initialiState = [
 				text: "prepare for ring ceremony"
 			},
 		]
-	}
+	},
+	{
+		title: "Major Project",
+		id: 1,
+		cards: [
+			{
+				id: 0,
+				text: "Login system"
+			},
+			{
+				id: 1,
+				text: "Dashboard Creation"
+			},
+		]
+	},
 ];
  
 const listReducer = (state = initialiState, action) => {

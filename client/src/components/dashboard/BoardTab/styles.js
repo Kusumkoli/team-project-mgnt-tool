@@ -152,5 +152,10 @@ export default makeStyles(theme => ({
     marginTop: theme.spacing(2),
     marginRIght: theme.spacing(2),
     marginBottom: theme.spacing(2),
+  },
+  oneBoard: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   }
 }));
