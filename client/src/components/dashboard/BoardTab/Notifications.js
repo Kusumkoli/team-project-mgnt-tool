@@ -1,27 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-//import { Grid } from "@material-ui/core";
 import { connect } from "react-redux";
 
-// import AppBar from '@material-ui/core/AppBar';
-// import Tabs from '@material-ui/core/Tabs';
-// import Box from '@material-ui/core/Box';
-// import PropTypes from 'prop-types';
-// import Tab from '@material-ui/core/Tab';
-// import CreateIcon from "@material-ui/icons/Create";
-// import ButtonGroup from "@material-ui/core/ButtonGroup";
-// import Avatar from "@material-ui/core/Avatar";
-// import IconButton from "@material-ui/core/IconButton";
-// import ArrowForwardOutlinedIcon from "@material-ui/icons/ArrowForwardOutlined";
 
 // styles
 import useStyles from "./styles";
 
 // components
-// import Notification from "../Notification/Notification";
-// import { Typography, Button } from "../Typography";
-// import TrelloList from "../TrelloList";
 import { addBoard } from "../../../actions/boardActions";
 import BoardThumbnail from "../BoardThumbnail";
 

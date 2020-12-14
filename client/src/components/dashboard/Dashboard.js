@@ -17,6 +17,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import Notifications from "./BoardTab/Notifications";
 
 function Dashboard(props) {
+
   var classes = useStyles();
   console.log("props in layout", props);
   
@@ -34,11 +35,14 @@ function Dashboard(props) {
           })}
         >
           <div className={classes.fakeToolbar} />
-          <Switch>
-            <Route path="/dashboard" component={Home} />
-            <Route path="/:boardID" component={TrelloBoard} />
-          </Switch>
+          <div className={classes.outerDiv}>
+            <Switch>
+              <Route path="/main" component={Home} />
+              <Route path="/:boardID" component={TrelloBoard} />
+            </Switch>
+          </div>
         </div>
+
       </>
     </div>
   );
