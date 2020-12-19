@@ -137,12 +137,13 @@ export default makeStyles(theme => ({
   mainContent: {
     padding: theme.spacing(4),
     width: '100%',
-    backgroundImage: '-webkit-linear-gradient(-90deg, #e0eafb 0%, #e0eafb 16%, #f4f8f9 16%, #f4f8f9 100% )',
+    backgroundImage: '-webkit-linear-gradient(-90deg, #e0eafb 0%, #e0eafb 0%, #f4f8f9 30%, #f4f8f9 100% )',
   },
   displayFlex: {
     display:'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginBottom: theme.spacing(2),
   },
   topGridItem: {
     color: 'white',
@@ -150,12 +151,27 @@ export default makeStyles(theme => ({
     display: 'flex',
     borderRadius: theme.spacing(1),
     marginTop: theme.spacing(2),
-    marginRIght: theme.spacing(2),
+    marginRIght: theme.spacing(4),
     marginBottom: theme.spacing(2),
-  },
-  oneBoard: {
+    "&:hover": {
+      cursor: 'pointer',
+      borderBottom: "5px solid #4e9ffa",
+    }
+  }, 
+  topGridItem2: {
+    color: 'white',
+    backgroundColor: '#4e9ffa',
     display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'flex-start'
+    borderRadius: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    marginRIght: theme.spacing(4),
+    marginBottom: theme.spacing(2),
+  }, 
+  hover1: {
+    "&:hover": {
+      cursor: 'pointer',
+      borderBottom: "5px solid white",
+    }
   }
+
 }));
