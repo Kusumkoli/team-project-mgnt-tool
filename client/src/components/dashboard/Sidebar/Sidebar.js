@@ -28,10 +28,10 @@ import {toggleSidebar} from '../../../reducers/layoutReducers'
 import { layoutDispatch } from '../../../actions/LayoutActions'
 
 const structure = [
-  { id: 0, label: "Dashboard", link: "/main", icon: <HomeIcon /> },
-  { id: 1, label: "Boards", link: "/:board", icon: <PermDataSettingIcon /> },
-  { id: 2, label: "Data Room", link: "/app/typography", icon: <StorageIcon /> },
-  { id: 3, label: "Corporate Actions", link: "/app/corporate-action", icon: < AssignmentIcon /> },
+  { id: 0, label: "Dashboard", link: "/dashboard", icon: <HomeIcon /> },
+  { id: 1, label: "Boards", link: "/board", icon: <PermDataSettingIcon /> },
+  // { id: 2, label: "Data Room", link: "/app/typography", icon: <StorageIcon /> },
+  // { id: 3, label: "Corporate Actions", link: "/app/corporate-action", icon: < AssignmentIcon /> },
   // { id: 4, label: "Timeline", link: "/app/timeline", icon: <TimelineIcon /> },
   // { id: 5, label: "E-Sign", link: "/app/board-room", icon: <MeetingRoomIcon /> }
 ];

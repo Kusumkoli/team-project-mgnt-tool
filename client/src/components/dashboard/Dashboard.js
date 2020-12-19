@@ -5,8 +5,9 @@ import { logoutUser } from "../../actions/authActions";
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import classnames from "classnames";
 import { withStyles } from '@material-ui/core/styles';
-import TrelloBoard from "./TrelloBoard";
-import Home from "./BoardTab/Notifications";
+//import TrelloBoard from "./TrelloBoard";
+//import Home from "./BoardTab/Notifications";
+//import Home from "./Home";
 
 // styles
 import useStyles from "./DashboardStyle";
@@ -14,7 +15,8 @@ import useStyles from "./DashboardStyle";
 // components
 import Header from "./Header/Header";
 import Sidebar from "./Sidebar/Sidebar";
-import Notifications from "./BoardTab/Notifications";
+import Board from "./Board";
+//import Notifications from "./BoardTab/Notifications";
 
 function Dashboard(props) {
 
@@ -36,10 +38,7 @@ function Dashboard(props) {
         >
           <div className={classes.fakeToolbar} />
           <div className={classes.outerDiv}>
-            <Switch>
-              <Route path="/main" component={Home} />
-              <Route path="/:boardID" component={TrelloBoard} />
-            </Switch>
+            <Board />
           </div>
         </div>
 

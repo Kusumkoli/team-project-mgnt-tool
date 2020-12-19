@@ -11,6 +11,7 @@
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
     "jwt-decode": "^3.1.1",
+    "lodash.throttle": "^4.1.1",
     "react": "^17.0.1",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^17.0.1",
@@ -20,6 +21,7 @@
     "react-scripts": "4.0.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "shortid": "^2.2.16",
     "tinycolor2": "^1.4.2",
     "web-vitals": "^0.2.4"
   },
